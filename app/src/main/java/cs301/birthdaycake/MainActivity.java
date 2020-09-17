@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         Switch frosting = findViewById(R.id.FrostingSwitch);
         frosting.setChecked(true);
         frosting.setOnCheckedChangeListener(controller);
+
+        view.setOnTouchListener(controller);
     }
 
     public void goodbye(View button) {
