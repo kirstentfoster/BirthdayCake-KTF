@@ -16,6 +16,8 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+    Paint balloonPaint = new Paint();
+    Paint stringPaint = new Paint();
     private CakeModel model;
 
     /* These constants define the dimensions of the cake.  While defining constants for things
@@ -34,6 +36,9 @@ public class CakeView extends SurfaceView {
     public static final float wickWidth = 6.0f;
     public static final float outerFlameRadius = 30.0f;
     public static final float innerFlameRadius = 15.0f;
+    public static final float balloonWidth = 100.0f;
+    public static final float balloonHeight = 200.0f;
+    public static final float stringLength = 200.0f;
 
 
 
@@ -62,6 +67,10 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        balloonPaint.setColor(Color.BLUE);
+        balloonPaint.setStyle(Paint.Style.FILL);
+        stringPaint.setColor(Color.BLACK);
+        stringPaint.setStyle(Paint.Style.FILL);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -99,7 +108,13 @@ public class CakeView extends SurfaceView {
         return model;
     }
 
+    public void drawBalloon(Canvas canvas, float x, float y){
+        canvas.drawOval(x-balloonWidth/2, y-balloonHeight/2, x+balloonWidth/2,
+                y+balloonHeight/2, balloonPaint);
+        canvas.drawLine(x, y+balloonHeight/2, x, y+balloonHeight/2+stringLength, stringPaint);
 
+
+    }
 
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
@@ -150,8 +165,13 @@ public class CakeView extends SurfaceView {
                     drawCandle(canvas, cakeLeft + cakeWidth / 2 - candleWidth / 2 + (dist * multiplier), cakeTop);
 
                     multiplier = i/2 + 1;
-                }
             }
+        }
+
+        if(model.balloonTouch) {
+            drawBalloon(canvas, model.balloonX, model.balloonY);
+        }
+
 
     }//onDraw
 

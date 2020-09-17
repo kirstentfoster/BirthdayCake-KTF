@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         Switch frosting = findViewById(R.id.FrostingSwitch);
         frosting.setChecked(true);
         frosting.setOnCheckedChangeListener(controller);
+
+        view.setOnTouchListener(controller);
     }
 
     public void goodbye(View button) {
