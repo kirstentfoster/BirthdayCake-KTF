@@ -8,4 +8,6 @@ public class CakeModel {
     boolean balloonTouch = false;
     float balloonX;
     float balloonY;
+    float touchX;
+    float touchY;
 }

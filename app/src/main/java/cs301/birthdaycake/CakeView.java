@@ -40,6 +40,8 @@ public class CakeView extends SurfaceView {
     public static final float balloonHeight = 200.0f;
     public static final float stringLength = 200.0f;
 
+    public static float x;
+    public static float y;
 
 
     /**
@@ -115,6 +117,12 @@ public class CakeView extends SurfaceView {
 
 
     }
+    public void printCoordinates(Canvas canvas, float x, float y) {
+        Paint redPaint = new Paint();
+        redPaint.setColor(Color.RED);
+        redPaint.setTextSize(50);
+        canvas.drawText("X:" + x + "\nY:" + y,  1500, 1000, redPaint);
+    }
 
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
@@ -165,14 +173,15 @@ public class CakeView extends SurfaceView {
                     drawCandle(canvas, cakeLeft + cakeWidth / 2 - candleWidth / 2 + (dist * multiplier), cakeTop);
 
                     multiplier = i/2 + 1;
+                }
             }
-        }
 
         if(model.balloonTouch) {
             drawBalloon(canvas, model.balloonX, model.balloonY);
         }
 
 
+        printCoordinates(canvas, model.touchX, model.touchY);
     }//onDraw
 
 }//class CakeView
