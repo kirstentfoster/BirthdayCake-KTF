@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
@@ -16,6 +17,10 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+
+    Paint checkerBoard = new Paint();
+
+
     private CakeModel model;
 
     /* These constants define the dimensions of the cake.  While defining constants for things
@@ -65,6 +70,7 @@ public class CakeView extends SurfaceView {
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
+
     }
 
     /**
@@ -100,6 +106,12 @@ public class CakeView extends SurfaceView {
     }
 
 
+        public void drawChecker(Canvas canvas, float x, float y) {
+            checkerBoard.setColor(0xFFFF00FF);
+            canvas.drawRect(x, y, x-30,y-30,checkerBoard);
+        }
+
+
 
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
@@ -114,6 +126,11 @@ public class CakeView extends SurfaceView {
         //top and bottom are used to keep a running tally as we progress down the cake layers
         float top = cakeTop;
         float bottom = cakeTop;
+        float x = model.x;
+        float y = model.y;
+
+        drawChecker(canvas, x, y);
+
 
         if(model.hasFrosting) {
             bottom = cakeTop + frostHeight;
@@ -154,6 +171,7 @@ public class CakeView extends SurfaceView {
             }
 
     }//onDraw
+
 
 }//class CakeView
 

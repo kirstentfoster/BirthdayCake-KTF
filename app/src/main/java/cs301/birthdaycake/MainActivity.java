@@ -4,10 +4,13 @@ import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.InputEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Checkable;
 import android.widget.SeekBar;
 import android.widget.Switch;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,10 +35,13 @@ public class MainActivity extends AppCompatActivity {
         Switch frosting = findViewById(R.id.FrostingSwitch);
         frosting.setChecked(true);
         frosting.setOnCheckedChangeListener(controller);
+
+        view.setOnTouchListener(controller);
     }
 
     public void goodbye(View button) {
         Log.i("button","Goodbye");
         finishAffinity();
     }
+
 }

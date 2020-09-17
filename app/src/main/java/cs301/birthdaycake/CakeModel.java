@@ -5,4 +5,6 @@ public class CakeModel {
     int numCandles = 2;
     boolean hasFrosting = true;
     boolean hasCandles = true;
+    float x;
+    float y;
 }
