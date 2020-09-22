@@ -40,9 +40,6 @@ public class CakeView extends SurfaceView {
     public static final float balloonHeight = 200.0f;
     public static final float stringLength = 200.0f;
 
-    public static float x;
-    public static float y;
-
 
     /**
      * ctor must be overridden here as per standard Java inheritance practice.  We need it
@@ -115,13 +112,12 @@ public class CakeView extends SurfaceView {
                 y+balloonHeight/2, balloonPaint);
         canvas.drawLine(x, y+balloonHeight/2, x, y+balloonHeight/2+stringLength, stringPaint);
 
-
     }
     public void printCoordinates(Canvas canvas, float x, float y) {
         Paint redPaint = new Paint();
         redPaint.setColor(Color.RED);
         redPaint.setTextSize(50);
-        canvas.drawText("X:" + x + "\nY:" + y,  1500, 1000, redPaint);
+        canvas.drawText("X:" + x + "\nY:" + y,  cakeLeft+cakeWidth + 100, 700, redPaint);
     }
 
     /**
@@ -178,10 +174,10 @@ public class CakeView extends SurfaceView {
 
         if(model.balloonTouch) {
             drawBalloon(canvas, model.balloonX, model.balloonY);
+            printCoordinates(canvas, model.touchX, model.touchY);
         }
 
 
-        printCoordinates(canvas, model.touchX, model.touchY);
     }//onDraw
 
 }//class CakeView
