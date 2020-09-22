@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
@@ -18,6 +19,10 @@ public class CakeView extends SurfaceView {
     Paint wickPaint = new Paint();
     Paint balloonPaint = new Paint();
     Paint stringPaint = new Paint();
+
+    Paint checkerBoard = new Paint();
+
+
     private CakeModel model;
 
     /* These constants define the dimensions of the cake.  While defining constants for things
@@ -39,7 +44,8 @@ public class CakeView extends SurfaceView {
     public static final float balloonWidth = 100.0f;
     public static final float balloonHeight = 200.0f;
     public static final float stringLength = 200.0f;
-
+    public static float x;
+    public static float y;
 
     /**
      * ctor must be overridden here as per standard Java inheritance practice.  We need it
@@ -120,6 +126,13 @@ public class CakeView extends SurfaceView {
         canvas.drawText("X:" + x + "\nY:" + y,  cakeLeft+cakeWidth + 100, 700, redPaint);
     }
 
+        public void drawChecker(Canvas canvas, float x, float y) {
+            checkerBoard.setColor(0xFFFF00FF);
+            canvas.drawRect(x, y, x-30,y-30,checkerBoard);
+        }
+
+
+
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
      * conceptually similar to a Graphics in javax.swing, the implementation has
@@ -133,6 +146,11 @@ public class CakeView extends SurfaceView {
         //top and bottom are used to keep a running tally as we progress down the cake layers
         float top = cakeTop;
         float bottom = cakeTop;
+        float x = model.x;
+        float y = model.y;
+
+        drawChecker(canvas, x, y);
+
 
         if(model.hasFrosting) {
             bottom = cakeTop + frostHeight;
@@ -171,6 +189,7 @@ public class CakeView extends SurfaceView {
                     multiplier = i/2 + 1;
                 }
             }
+        printCoordinates(canvas, model.touchX, model.touchY);
 
         if(model.balloonTouch) {
             drawBalloon(canvas, model.balloonX, model.balloonY);

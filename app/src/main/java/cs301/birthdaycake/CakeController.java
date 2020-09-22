@@ -1,5 +1,8 @@
 package cs301.birthdaycake;
 
+
+import android.graphics.Canvas;
+import android.graphics.Point;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,6 +14,9 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
         SeekBar.OnSeekBarChangeListener, View.OnTouchListener {
     private CakeView v;
     private CakeModel model;
+    private Canvas canvas;
+
+
 
     CakeController(CakeView cv) {
         v = cv;
@@ -66,9 +72,13 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
         model.balloonTouch = true;
         model.balloonX = motionEvent.getX();
         model.balloonY = motionEvent.getY();
+        model.x = motionEvent.getX();
+        model.y = motionEvent.getY();
+
         model.touchX = motionEvent.getX();
         model.touchY = motionEvent.getY();
         this.v.invalidate();
         return false;
-    }
+        }
+
 }
