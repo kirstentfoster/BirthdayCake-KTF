@@ -7,4 +7,6 @@ public class CakeModel {
     boolean hasCandles = true;
     float x;
     float y;
+    float touchX;
+    float touchY;
 }
