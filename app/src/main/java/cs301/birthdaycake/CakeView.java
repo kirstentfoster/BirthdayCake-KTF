@@ -126,10 +126,15 @@ public class CakeView extends SurfaceView {
         canvas.drawText("X:" + x + "\nY:" + y,  cakeLeft+cakeWidth + 100, 700, redPaint);
     }
 
-        public void drawChecker(Canvas canvas, float x, float y) {
-            checkerBoard.setColor(0xFFFF00FF);
-            canvas.drawRect(x, y, x-30,y-30,checkerBoard);
-        }
+    public void drawChecker(Canvas canvas, float x, float y) {
+        checkerBoard.setColor(Color.BLUE);
+        canvas.drawRect(x, y, x-30,y-30,checkerBoard);
+        canvas.drawRect(x-30,y, x+30,y+30,checkerBoard);
+        checkerBoard.setColor(Color.RED);
+        canvas.drawRect(x,y, x+30,y-30,checkerBoard);
+        canvas.drawRect(x, y, x-30,y+30,checkerBoard);
+
+    }
 
 
 
@@ -149,7 +154,6 @@ public class CakeView extends SurfaceView {
         float x = model.x;
         float y = model.y;
 
-        drawChecker(canvas, x, y);
 
 
         if(model.hasFrosting) {
@@ -195,6 +199,8 @@ public class CakeView extends SurfaceView {
             drawBalloon(canvas, model.balloonX, model.balloonY);
             printCoordinates(canvas, model.touchX, model.touchY);
         }
+
+        drawChecker(canvas, x, y);
 
 
     }//onDraw
